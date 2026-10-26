@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eyes Wide Shut — Scene Browser</title>
+  <link rel="stylesheet" href="/style.css?v=3" />
+</head>
+<body>
+  <div id="banner" class="banner hidden" role="status"></div>
+  <header class="top">
+    <div class="brand">
+      <h1>Eyes Wide Shut</h1>
+      <p class="sub">Scene browser · Tailscale only</p>
+    </div>
+    <div class="controls">
+      <div class="mode-toggle" role="group" aria-label="Scene grouping">
+        <button type="button" id="mode-clip" class="mode-btn active" data-mode="clip">CLIP scenes</button>
+        <button type="button" id="mode-cuts" class="mode-btn" data-mode="cuts">Cuts</button>
+      </div>
+      <input id="filter" type="search" placeholder="Filter scenes…" autocomplete="off" />
+      <label class="loop"><input type="checkbox" id="loop" checked /> Loop</label>
+      <span id="status" class="status">Loading…</span>
+    </div>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div id="scene-list" class="scene-list"></div>
+    </aside>
+    <section class="stage">
+      <div class="preview-wrap">
+        <canvas id="canvas" width="1280" height="690"></canvas>
+        <video id="fallback-video" playsinline class="hidden"></video>
+        <div id="overlay" class="overlay">Select a scene</div>
+      </div>
+      <div id="scene-scrub" class="scene-scrub" hidden>
+        <button id="scrub-play" type="button" class="scrub-play" title="Play / pause" aria-label="Play or pause">▶</button>
+        <span id="scrub-cur" class="scrub-time">0:00</span>
+        <input id="scrub" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek within scene" />
+        <span id="scrub-end" class="scrub-time">0:00</span>
+      </div>
+      <div class="meta">
+        <div id="scene-title" class="scene-title">—</div>
+        <div id="scene-times" class="scene-times"></div>
+        <div class="actions">
+          <button id="prev" type="button">← Prev</button>
+          <button id="play" type="button" class="primary">Play scene</button>
+          <button id="stop" type="button">Stop</button>
+          <button id="next" type="button">Next →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/app.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "n": 621,
+  "dim": 512,
+  "model": "ViT-B-32",
+  "pretrained": "openai",
+  "frames_mode": "middle",
+  "movie": "/home/koushik/scene-browser/media/eyes-wide-shut-browser.mp4"
+}
