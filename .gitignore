@@ -1,0 +1,24 @@
+# media / clips / generated thumbs
+media/
+cache/
+logs/
+*.mp4
+*.mkv
+*.webm
+*.partial
+data/shot_frames/
+data/*.npy
+
+# python / node
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+
+# local secrets / env
+.env
+.env.*
+
+# OS
+.DS_Store

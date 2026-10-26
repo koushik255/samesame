@@ -1,0 +1,17 @@
+[Unit]
+Description=Eyes Wide Shut scene browser (Tailscale only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/koushik/scene-browser
+Environment=PATH=/home/koushik/.nvm/versions/node/v24.19.0/bin:/usr/local/bin:/usr/bin:/bin
+Environment=SCENE_BROWSER_HOST=100.98.83.82
+Environment=SCENE_BROWSER_PORT=8788
+ExecStart=/home/koushik/.nvm/versions/node/v24.19.0/bin/node /home/koushik/scene-browser/server.js
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
