@@ -9,7 +9,6 @@ Tailscale-only scene browser: PySceneDetect cuts + CLIP narrative-scene merge, s
 - `scripts/deploy_and_run_clip.sh` — deploy helper
 - `data/clip_scenes.json` — example CLIP merge output (no video)
 - `CLIP_SCENES.md` — tuning notes
-- `systemd/scene-browser.service` — user unit example
 
 ## What’s not in this repo
 Movie files, per-scene clips, thumbnails cache, `.venv`, and embedding `.npy` (regenerate on the server).
@@ -17,7 +16,7 @@ Movie files, per-scene clips, thumbnails cache, `.venv`, and embedding `.npy` (r
 ## Run (server)
 1. Put a browser-decodable H.264 MP4 at `media/eyes-wide-shut-browser.mp4` (or set paths in the server).
 2. Point the PySceneDetect CSV path (see `clip_merge_scenes.py` / env).
-3. `npm install` if needed, run `node server.js` (or the systemd unit).
+3. `npm install` if needed, run `node server.js`.
 4. CLIP merge: create `.venv`, install deps from the script/docs, then `python scripts/clip_merge_scenes.py`.
 
 Bind to Tailscale only in production.
