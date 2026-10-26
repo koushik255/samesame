@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run ONCE SSH to kouskous works. Copies code, installs deps if needed, encodes, restarts service.
+# Run ONCE SSH to kouskous works. Copies code, installs deps if needed, runs CLIP merge.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 HOST=kouskous
@@ -7,7 +7,7 @@ REMOTE=~/scene-browser
 
 echo "== sync =="
 rsync -av --exclude node_modules --exclude .venv --exclude data/shot_frames --exclude __pycache__ \
-  "$ROOT/server.js" "$ROOT/public" "$ROOT/scripts" "$ROOT/CLIP_SCENES.md" "$ROOT/systemd" \
+  "$ROOT/server.js" "$ROOT/public" "$ROOT/scripts" "$ROOT/CLIP_SCENES.md" \
   "$HOST:$REMOTE/"
 
 echo "== remote clip merge =="
@@ -30,9 +30,6 @@ else
   . .venv/bin/activate
 fi
 nice -n 15 python scripts/clip_merge_scenes.py
-systemctl --user restart scene-browser.service
-sleep 1
-systemctl --user is-active scene-browser.service
 curl -sS "http://100.98.83.82:8788/api/scenes?mode=clip" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('mode'), d.get('count'), 'cuts', d.get('cutCount'), d.get('model'))"
 curl -sS -o /dev/null -w "movie %{http_code}\n" "http://100.98.83.82:8788/movie"
 REMOTE
